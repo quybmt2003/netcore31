@@ -1,0 +1,18 @@
+﻿ //Service
+ getWithEtag(id: number): Observable<any> {
+        return this.httpClient.get(`https://localhost:5001/api/RestApi/${id}`, {
+            headers: {
+                'Access-Control-Expose-Headers': "Etag",
+                'Content-Type': 'text/plain; charset=utf-8',
+                'If-None-Match': this.etag
+            },
+            observe: 'response',
+            responseType: 'text'
+        })
+    }
+
+//Component
+        this.heroService.getWithEtag(1).subscribe(res=>{
+            this.heroService.etag = res.headers.get('etag');
+            this.response = res.body;
+        });
