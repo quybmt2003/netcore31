@@ -5,11 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace WebApiNetCore31.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
