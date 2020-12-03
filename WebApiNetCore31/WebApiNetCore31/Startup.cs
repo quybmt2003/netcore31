@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 using Repository.Context;
+using Service.Client;
 using Swashbuckle;
 
 namespace WebApiNetCore31
@@ -72,7 +73,10 @@ namespace WebApiNetCore31
             });
 
             services.AddMemoryCache();
-
+            services.AddHttpClient<IApiServiceClient>(c =>
+            {
+                c.BaseAddress = new Uri("http://localhost");
+            });
             //services.AddDbContext<IdentityUserContext>(options =>
             //    options.UseSqlServer(Configuration.GetConnectionString("IdentityUserContext")));
         }

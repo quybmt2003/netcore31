@@ -7,7 +7,9 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["WebApiNetCore31/WebApiNetCore31.csproj", "WebApiNetCore31/"]
+COPY WebApiNetCore31/WebApiNetCore31.csproj WebApiNetCore31/
+COPY Repository/Repository.csproj Repository/
+COPY Entity/Entity.csproj Entity/
 RUN dotnet restore "WebApiNetCore31/WebApiNetCore31.csproj"
 COPY . .
 WORKDIR "/src/WebApiNetCore31"
